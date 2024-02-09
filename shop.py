@@ -1,3 +1,4 @@
+import json
 from tabulate import tabulate
 from machine import Machine
 from utils import get_int
@@ -46,3 +47,10 @@ class Shop():
         self.print_items_from_category(category)
         item_idx = get_int('który chcesz kupić pojazd: ', 1, len(category), True)
         return item_idx - 1 if not item_idx is None else None
+
+    def load(self, filename):
+        with open(filename) as file:
+            data = json.load(file)
+            print(data)
+            for category in data['categories']:
+                self.add_items(category['category_name'], category['machines'])

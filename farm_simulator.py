@@ -10,19 +10,6 @@ COLLECT = 2 # zbierać
 TRACTORS = 'ciągniki'
 COMBINES = 'kombajny'
 
-tractors = [
-    {'name': 'mały ciągnik', 'engine': 120, 'speed': 30, 'weight': 4.8, 'price': 0, 'wait': 60},
-    {'name': 'średni ciągnik', 'engine': 170, 'speed': 40, 'weight': 6.8, 'price': 99000, 'wait': 55},
-    {'name': 'duży ciągnik', 'engine': 305, 'speed': 50, 'weight': 8.8, 'price': 245000, 'wait': 40},
-]
-
-combines = [
-    {'name': 'słaby kombajn', 'engine': 260, 'speed': 15, 'weight': 6.8, 'price': 0, 'wait': 70},
-    {'name': 'Toliner 4090 HTS', 'engine': 310, 'speed': 20, 'weight': 9.8, 'price': 129000, 'wait': 67},
-    {'name': 'Axial-flow 7150', 'engine': 449, 'speed': 30, 'weight': 15.9, 'price': 301500, 'wait': 64},
-    {'name': 'TRION  750', 'engine': 465, 'speed': 30, 'weight': 16.9, 'price': 401000, 'wait': 54},    
-]
-
 class FarmSimulator():
     def __init__(self):
         self.main_menu = Menu([
@@ -44,9 +31,7 @@ class FarmSimulator():
         self.combine_harvester = None
 
         self.shop = Shop()
-        self.shop.add_items(TRACTORS, tractors)
-        self.shop.add_items(COMBINES, combines)
-
+        self.shop.load('machines.json')
         self.tractor = self.shop.categories[TRACTORS].pop(0)
         self.combine_harvester = self.shop.categories[COMBINES].pop(0)
 
