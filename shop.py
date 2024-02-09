@@ -51,6 +51,5 @@ class Shop():
     def load(self, filename):
         with open(filename) as file:
             data = json.load(file)
-            print(data)
             for category in data['categories']:
                 self.add_items(category['category_name'], category['machines'])
